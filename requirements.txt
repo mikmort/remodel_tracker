@@ -1,0 +1,5 @@
+fastapi>=0.120,<1
+uvicorn[standard]>=0.38,<1
+azure-identity>=1.25,<2
+azure-storage-blob>=12.27,<13
+reportlab>=4.4,<5

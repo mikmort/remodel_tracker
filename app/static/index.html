@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Remodel tracker</title>
+  <script src="/static/theme.js"></script>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#content">Skip to project content</a>
+  <section id="access" class="access" aria-labelledby="access-title">
+    <div class="eyebrow">Private project workspace</div>
+    <h1 id="access-title">Remodel tracker</h1>
+    <p>Project records, decisions, and the evidence behind them. Access is restricted to the configured owner.</p>
+    <div class="actions">
+      <a id="microsoft-signin" class="button" href="/.auth/login/aad?post_login_redirect_uri=/" hidden>Sign in with Microsoft</a>
+      <a id="google-signin" class="button secondary" href="/.auth/login/google?post_login_redirect_uri=/" hidden>Sign in with Google</a>
+    </div>
+    <p id="provider-status" class="muted" role="status">Checking sign-in configuration...</p>
+    <p id="access-status" role="status">Checking access...</p>
+    <a class="signout" href="/.auth/logout?post_logout_redirect_uri=/">Sign out / switch account</a>
+    <details id="identity-panel" hidden>
+      <summary>My sign-in identity</summary>
+      <p>This identifies your account for an administrator to enroll. It does not grant project access.</p>
+      <pre id="identity"></pre>
+    </details>
+  </section>
+  <div id="workspace" class="layout" hidden>
+    <aside>
+      <div class="eyebrow">Private workspace</div>
+      <a href="#overview" class="brand">Remodel<br>tracker</a>
+      <nav id="navigation" aria-label="Project navigation"></nav>
+      <p class="sidebar-note">Choices, orders, payments, and installation are different facts. Source evidence stays preserved.</p>
+      <a href="/.auth/logout?post_logout_redirect_uri=/" class="signout">Sign out</a>
+    </aside>
+    <main>
+      <header class="topline">
+        <div><div class="eyebrow" id="revision"></div><h1 id="title"></h1></div>
+        <label class="search">Find project information
+          <input id="search" type="search" placeholder="Product, room, contact, invoice..." autocomplete="off">
+        </label>
+      </header>
+      <p id="intro" class="lead"></p>
+      <div id="source-state" class="notice" hidden></div>
+      <div id="message" role="status" hidden></div>
+      <div id="toolbar" class="toolbar"></div>
+      <section id="content" tabindex="-1" aria-live="polite"></section>
+      <footer id="footer"></footer>
+    </main>
+  </div>
+  <dialog id="editor" aria-labelledby="editor-title">
+    <form id="edit-form">
+      <header class="topline"><h2 id="editor-title">Record an owner decision</h2><button type="button" id="close-editor" class="secondary">Cancel</button></header>
+      <p>Record a choice or working reference, not a purchase, payment, or fabrication approval. Purchased variants require source-order reconciliation.</p>
+      <div id="edit-fields" class="edit-fields"></div>
+      <label class="field">Decision / evidence basis (required)
+        <textarea id="edit-basis" required maxlength="4000" rows="3" placeholder="What changed, who directed it, and which evidence supports it?"></textarea>
+      </label>
+      <p id="edit-error" role="alert"></p>
+      <div class="actions"><button id="save-edit" type="submit">Save decision</button><button type="button" id="restore-edit" class="secondary" hidden>Restore imported source values</button></div>
+    </form>
+  </dialog>
+  <noscript>JavaScript is required. No private project content is included in this page.</noscript>
+</body>
+</html>
