@@ -174,6 +174,21 @@ test("theme override respects both light and dark", () => {
   }
 });
 
+test("post-login session fragments are discarded without touching ordinary navigation", () => {
+  const script = fs.readFileSync(path.join(staticRoot, "theme.js"), "utf8");
+  for (const [fragment, expected] of [["#token=synthetic-session", ""], ["#selections", "#selections"]]) {
+    const dom = new JSDOM("", {
+      url: `https://app.example.invalid/?scoutTheme=light${fragment}`, runScripts: "outside-only",
+    });
+    dom.window.eval(script);
+    assert.equal(dom.window.location.hash, expected);
+    assert.equal(dom.window.location.search, "?scoutTheme=light");
+    assert.equal(dom.window.sessionStorage.length, 0);
+    assert.equal(dom.window.localStorage.length, 0);
+    dom.window.close();
+  }
+});
+
 test("global search includes nested budget cost codes", async () => {
   const { dom, window, document } = await browser();
   const search = document.getElementById("search");

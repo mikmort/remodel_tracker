@@ -55,6 +55,8 @@ authorization-private; it is not a private-endpoint/VNet deployment. No blob URL
 SAS, storage key, or document bytes are put in the public shell or GitHub.
 Authenticated content is `no-store`; the app uses no localStorage, IndexedDB,
 service worker, external analytics, fonts, or third-party front-end CDN.
+Easy Auth post-login session fragments are discarded before application startup;
+the browser's authenticated session cookie is used instead.
 
 Audit history is transactionally preserved by the app, not an independently
 immutable/WORM compliance log. An administrator with storage write access can
